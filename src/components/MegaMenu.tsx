@@ -61,7 +61,7 @@ export default function MegaMenu({
   onClose?: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref, () => onClose?.());
+  useOnClickOutside(ref as React.RefObject<HTMLElement>, () => onClose?.());
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {

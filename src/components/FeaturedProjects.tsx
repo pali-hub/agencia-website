@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import { featuredProjects } from "@/lib/projectsData";
 
 const fade = {
   hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { duration: .5, ease: "easeOut" } }
+  show: { opacity: 1, y: 0, transition: { duration: .5, ease: easeOut } }
 };
 
 export default function FeaturedProjects() {
