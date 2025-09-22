@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  scroll-padding-top: 80px; /* Garante espaço ao navegar para âncoras */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== Marquee ===== */
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* respeitar quem pede menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none !important; }
+}
+
+/* Evitar scroll horizontal feio em mobile */
+html, body { overflow-x: hidden; }
+
+/* Cards com textura de agência */
+.card {
+  border-radius: 1rem; /* rounded-2xl */
+  background: rgba(255, 255, 255, 0.7); /* bg-white/70 */
+  backdrop-filter: blur(8px); /* backdrop-blur */
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Grid com textura */
+.grid-agency {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+}
+
+/* ===== Hover underline elegante nos itens do header ===== */
+@layer utilities {
+  .hover-underline {
+    position: relative;
+  }
+  .hover-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 0%;
+    background: currentColor;
+    transition: width .22s ease;
+  }
+  .hover-underline:hover::after,
+  .hover-underline:focus-visible::after {
+    width: 100%;
+  }
+
+  /* Glass */
+  .panel-glass {
+    @apply bg-white/80 backdrop-blur;
+  }
+
+  /* Hover lift sutil para cards */
+  .hover-lift {
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* ===== Edge fade para painéis (lados esquerdo/direito) ===== */
+@layer utilities {
+  .edge-fade {
+    /* tamanho padrão do fade; pode ser sobrescrito via custom property */
+    --fade-x: 24px;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--fade-x),
+      #000 calc(100% - var(--fade-x)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--fade-x),
+      #000 calc(100% - var(--fade-x)),
+      transparent 100%
+    );
+  }
+}
+
+/* ===== Edge fade horizontal + vertical ===== */
+@layer utilities {
+  .edge-fade-xy {
+    --fade-x: 24px;
+    --fade-y: 24px;
+
+    -webkit-mask-image: 
+      linear-gradient(to right,
+        transparent 0,
+        #000 var(--fade-x),
+        #000 calc(100% - var(--fade-x)),
+        transparent 100%
+      ),
+      linear-gradient(to bottom,
+        transparent 0,
+        #000 var(--fade-y),
+        #000 calc(100% - var(--fade-y)),
+        transparent 100%
+      );
+
+    -webkit-mask-composite: destination-in;
+    mask-composite: intersect;
+
+    mask-image: 
+      linear-gradient(to right,
+        transparent 0,
+        #000 var(--fade-x),
+        #000 calc(100% - var(--fade-x)),
+        transparent 100%
+      ),
+      linear-gradient(to bottom,
+        transparent 0,
+        #000 var(--fade-y),
+        #000 calc(100% - var(--fade-y)),
+        transparent 100%
+      );
+  }
+}
+
+.menu-card-highlight {
+  background: #ffe4e6; /* rosa claro */
+  border: 1px solid #fda4af;
+  box-shadow: 0 2px 8px #fda4af33;
+}
