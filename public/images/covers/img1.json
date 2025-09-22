@@ -1,0 +1,7 @@
+{
+  "client": "Nome do Cliente",
+  "slug": "slug-do-projeto",
+  "tags": ["Web Design", "Branding"],
+  "backdrop": "from-[#46307F] to-[#1F2A69]",
+  "backdropRing": "ring-white/10"
+}
