@@ -1,30 +1,30 @@
 export type ProjectTag = "Web Design" | "Webflow Dev" | "Branding" | "UI/UX";
 
 export type FeaturedProject = {
-  client: string;                // "AI, US" | "Industrial Solutions, SA"
-  slug: string;                  // rota do case
-  cover: string;                 // /images/covers/gen.png
+  client: string;
+  slug: string;
+  cover: string; // caminho da imagem
   tags: ProjectTag[];
-  // classes tailwind para o fundo do cartão da direita
-  backdrop: string;              // ex: "from-[#3c2a7a] to-[#1c2560]"
-  backdropRing?: string;         // opcional: cor da moldura fina
+  backdrop: string;
+  backdropRing?: string;
 };
 
 export const featuredProjects: FeaturedProject[] = [
   {
-    client: "AI, US",
-    slug: "gen-platform",
-    cover: "/images/covers/gen.png",
-    tags: ["Web Design"],
-    backdrop: "from-[#46307F] to-[#1F2A69]",         // roxo → azul escuro
-    backdropRing: "ring-white/10",
+    client: "Nome do Cliente",
+    slug: "slug-do-projeto",
+    cover: "/images/covers/img1.png", // ou img2.jpg, img3.webp
+    tags: ["Web Design", "Branding"],
+    backdrop: "from-[#46307F] to-[#1F2A69]",
+    backdropRing: "ring-white/10"
   },
   {
-    client: "Industrial Solutions, SA",
-    slug: "evosolar",
-    cover: "/images/covers/evosolar.png",
-    tags: ["Web Design", "Webflow Dev"],
-    backdrop: "from-[#E7E5D8] to-[#D8D6C7]",         // bege
-    backdropRing: "ring-black/5",
+    client: "Outro Cliente",
+    slug: "slug-do-outro",
+    cover: "/images/covers/img2.jpg",
+    tags: ["UI/UX"],
+    backdrop: "from-[#E7E5D8] to-[#D8D6C7]",
+    backdropRing: "ring-black/5"
   },
+  // Adicione outros projetos conforme necessário
 ];
