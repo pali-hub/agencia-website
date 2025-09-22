@@ -3,6 +3,8 @@
 import { motion, easeOut } from "framer-motion";
 import Marquee from "@/components/Marquee";
 import ServicesList from "@/components/ServicesList";
+import ProjectHighlight from "@/components/ProjectHighlight";
+import { featuredProjects } from "@/lib/projectsData";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -66,6 +68,25 @@ export default function Home() {
           className="border-b bg-white/60 backdrop-blur"
         />
       </div>
+
+      {/* PROJECT HIGHLIGHTS SECTION */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+        <div className="space-y-16">
+          {/* GEN Project */}
+          <ProjectHighlight
+            {...featuredProjects[0]}
+            number="52"
+            className="mb-12"
+          />
+          
+          {/* Evosolar Project */}
+          <ProjectHighlight
+            {...featuredProjects[1]}
+            number="50"
+            className="mb-12"
+          />
+        </div>
+      </section>
 
       <ServicesList />
     </main>
