@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Marquee from "@/components/Marquee";
 import ServicesList from "@/components/ServicesList";
+import ProjectHighlight from "@/components/ProjectHighlight";
+import { featuredProjects } from "@/lib/projectsData";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -66,6 +68,49 @@ export default function Home() {
           className="border-b bg-white/60 backdrop-blur"
         />
       </div>
+
+      {/* PROJECT HIGHLIGHTS */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+        <div className="rounded-[28px] border border-black/[.06] bg-white/50 backdrop-blur">
+          <div className="p-5 sm:p-8 md:p-10">
+            <span className="inline-flex items-center gap-2 text-sm text-neutral-600">
+              <span className="size-2 rounded-full bg-neutral-900" />
+              Project highlights
+            </span>
+            <h2 className="mt-2 text-2xl font-medium tracking-tight sm:text-3xl">
+              Editorial design showcasing our latest work.
+            </h2>
+          </div>
+
+          <div className="flex flex-col divide-y divide-black/[.06]">
+            {/* GEN Project */}
+            <div className="p-5 sm:p-8 md:p-10">
+              <ProjectHighlight
+                client={featuredProjects[0].client}
+                slug={featuredProjects[0].slug}
+                cover={featuredProjects[0].cover}
+                tags={featuredProjects[0].tags}
+                backdrop={featuredProjects[0].backdrop}
+                backdropRing={featuredProjects[0].backdropRing}
+                number={52}
+              />
+            </div>
+
+            {/* Evosolar Project */}
+            <div className="p-5 sm:p-8 md:p-10">
+              <ProjectHighlight
+                client={featuredProjects[1].client}
+                slug={featuredProjects[1].slug}
+                cover={featuredProjects[1].cover}
+                tags={featuredProjects[1].tags}
+                backdrop={featuredProjects[1].backdrop}
+                backdropRing={featuredProjects[1].backdropRing}
+                number={50}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <ServicesList />
     </main>
