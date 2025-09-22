@@ -3,14 +3,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { featuredProjects } from "@/lib/projectsData";
+import { FeaturedProject } from "@/lib/projectsData";
 
 const fade = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: .5, ease: "easeOut" } }
 };
 
-export default function FeaturedProjects() {
+interface FeaturedProjectsProps {
+  projects: FeaturedProject[];
+}
+
+export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
+  const featuredProjects = projects;
   return (
     <section aria-labelledby="featured-title" className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
       <div className="rounded-[28px] border border-black/[.06] bg-white/50 backdrop-blur">

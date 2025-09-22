@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Marquee from "@/components/Marquee";
 import ServicesList from "@/components/ServicesList";
+import FeaturedProjectsContainer from "@/components/FeaturedProjectsContainer";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -67,6 +68,7 @@ export default function Home() {
         />
       </div>
 
+      <FeaturedProjectsContainer />
       <ServicesList />
     </main>
   );
