@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "export": "echo 'Note: next export is deprecated. Static export is automatically handled by output: export in next.config.ts'",
+    "build-static": "next build",
     "start": "next start",
     "lint": "eslint"
   },
