@@ -42,7 +42,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 3. Conecte seu repositório GitHub
 4. Configure as seguintes opções:
    - **Build command**: `npm run build`
-   - **Build output directory**: `.next`
+   - **Build output directory**: `.next` (ou `out` se usar export estático)
    - **Root directory**: `/` (deixar vazio)
    - **Environment variables**: Configure conforme necessário (veja seção abaixo)
 
@@ -63,14 +63,22 @@ Configure as seguintes variáveis no painel da Cloudflare Pages (**Settings** > 
 
 ### Configuração Manual
 
-Se preferir fazer deploy manual:
+Se preferir fazer deploy manual ou usar export estático:
 
-1. Execute o build localmente:
+1. Para export estático completo (recomendado para Cloudflare Pages):
 ```bash
+# Descomente 'output: "export"' no next.config.ts
 npm run build
+# O output estará na pasta 'out/'
 ```
 
-2. Faça upload da pasta `.next` para Cloudflare Pages
+2. Para SSG híbrido (padrão):
+```bash
+npm run build
+# O output estará na pasta '.next/'
+```
+
+3. Faça upload da pasta apropriada para Cloudflare Pages
 
 ### Verificações Pré-Deploy
 
