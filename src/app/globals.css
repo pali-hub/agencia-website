@@ -39,6 +39,18 @@ body {
 /* respeitar quem pede menos movimento */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none !important; }
+  
+  /* Reduce motion for all animations and transitions */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Preserve essential transitions for focus states */
+  :focus, :focus-visible, :focus-within {
+    transition-duration: 0.15s !important;
+  }
 }
 
 /* Evitar scroll horizontal feio em mobile */
@@ -91,6 +103,30 @@ html, body { overflow-x: hidden; }
   }
   .hover-lift:hover {
     transform: translateY(-1px);
+  }
+  
+  /* Enhanced focus styles for better accessibility */
+  .focus-card {
+    position: relative;
+  }
+  
+  .focus-card:focus,
+  .focus-card:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .card, .focus-card {
+      border-color: #000 !important;
+      border-width: 2px !important;
+    }
+    
+    .text-gray-600 {
+      color: #333 !important;
+    }
   }
 }
 
