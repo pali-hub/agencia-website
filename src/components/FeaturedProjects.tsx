@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type FeaturedProject = {
   client: string;
@@ -42,12 +43,16 @@ export default function FeaturedProjects() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="rounded-3xl bg-white/30 border border-gray-200 backdrop-blur shadow-lg flex flex-col md:flex-row gap-6 items-center p-6 mx-auto max-w-3xl"
         >
-          <img
-            src={project.cover}
-            alt={project.client}
-            className="w-full rounded-2xl shadow-xl object-cover"
-            style={{ maxHeight: 320 }}
-          />
+          <div className="relative w-full rounded-2xl overflow-hidden shadow-xl" style={{ maxHeight: 320 }}>
+            <Image
+              src={project.cover}
+              alt={project.client}
+              width={640}
+              height={320}
+              className="w-full h-full object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
           <div className="w-full mt-4 md:mt-0">
             <div className="text-gray-500 mb-2">• {project.client}</div>
             <h2 className="font-bold text-2xl mb-2 text-gray-800">{project.client}</h2>
