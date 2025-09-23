@@ -3,6 +3,7 @@
 import { motion, easeOut } from "framer-motion";
 import Marquee from "@/components/Marquee";
 import FeaturedProjects from "@/components/FeaturedProjects";
+import CreativeLabSection from "@/components/CreativeLabSection";
 import ServicesList from "@/components/ServicesList";
 
 const fadeUp = {
@@ -72,7 +73,10 @@ export default function Home() {
       {/* 4. FeaturedProjects */}
       <FeaturedProjects />
 
-      {/* 5. ServicesList */}
+      {/* 5. CreativeLabSection */}
+      <CreativeLabSection />
+
+      {/* 6. ServicesList */}
       <ServicesList />
     </main>
   );
