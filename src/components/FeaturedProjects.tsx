@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 type FeaturedProject = {
   client: string;
@@ -15,7 +16,7 @@ type FeaturedProject = {
 const covers = [
   { json: "/images/covers/img1.json", img: "/images/covers/img1.JPG" },
   { json: "/images/covers/img2.json", img: "/images/covers/img2.JPG" },
-  // Adicione mais arquivos aqui caso existam!
+  // Adicione mais arquivos aqui!
 ];
 
 export default function FeaturedProjects() {
@@ -31,21 +32,26 @@ export default function FeaturedProjects() {
   }, []);
 
   return (
-    <section className="grid md:grid-cols-2 gap-10 py-12">
-      {projects.map((project, idx) => (
-        <div
+    <section className="flex flex-col gap-10 py-12 px-2 sm:px-0">
+      {projects.map((project) => (
+        <motion.div
           key={project.slug}
-          className={`rounded-3xl p-6 bg-gradient-to-br ${project.backdrop} ring-8 ${project.backdropRing} flex flex-col md:flex-row gap-6 items-center`}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="rounded-3xl bg-white/30 border border-gray-200 backdrop-blur shadow-lg flex flex-col md:flex-row gap-6 items-center p-6 mx-auto max-w-3xl"
         >
           <img
             src={project.cover}
             alt={project.client}
-            className="w-full md:w-2/3 rounded-2xl shadow-lg"
+            className="w-full rounded-2xl shadow-xl object-cover"
+            style={{ maxHeight: 320 }}
           />
-          <div className="flex-1">
+          <div className="w-full mt-4 md:mt-0">
             <div className="text-gray-500 mb-2">• {project.client}</div>
-            <h2 className="font-bold text-xl mb-2">{project.client}</h2>
-            <p className="mb-3">{project.description || ""}</p>
+            <h2 className="font-bold text-2xl mb-2 text-gray-800">{project.client}</h2>
+            <p className="mb-3 text-gray-700">{project.description || ""}</p>
             <div className="flex gap-2 flex-wrap">
               {project.tags.map((tag) => (
                 <span
@@ -57,7 +63,7 @@ export default function FeaturedProjects() {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
     </section>
   );
