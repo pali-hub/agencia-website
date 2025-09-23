@@ -7,37 +7,37 @@ import Header from "@/components/Header";
 const mazzardSans = localFont({
   src: [
     {
-      path: "../fonts/mazzard/MazzardL-Thin.otf",
+      path: "../../public/fonts/MazzardL-Thin.otf",
       weight: "100",
       style: "normal",
     },
     {
-      path: "../fonts/mazzard/MazzardL-ExtraLight.otf", 
+      path: "../../public/fonts/MazzardL-ExtraLight.otf", 
       weight: "200",
       style: "normal",
     },
     {
-      path: "../fonts/mazzard/MazzardL-Light.otf",
+      path: "../../public/fonts/MazzardL-Light.otf",
       weight: "300", 
       style: "normal",
     },
     {
-      path: "../fonts/mazzard/MazzardL-Regular.otf",
+      path: "../../public/fonts/MazzardL-Regular.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../fonts/mazzard/MazzardL-Medium.otf",
+      path: "../../public/fonts/MazzardL-Medium.otf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../fonts/mazzard/MazzardL-SemiBold.otf", 
+      path: "../../public/fonts/MazzardL-SemiBold.otf", 
       weight: "600",
       style: "normal",
     },
     {
-      path: "../fonts/mazzard/MazzardL-Bold.otf",
+      path: "../../public/fonts/MazzardL-Bold.otf",
       weight: "700",
       style: "normal",
     },
@@ -49,22 +49,22 @@ const mazzardSans = localFont({
 const mazzardMono = localFont({
   src: [
     {
-      path: "../fonts/mazzard/MazzardH-Light.otf", 
+      path: "../../public/fonts/MazzardH-Light.otf", 
       weight: "300",
       style: "normal",
     },
     {
-      path: "../fonts/mazzard/MazzardH-Regular.otf",
+      path: "../../public/fonts/MazzardH-Regular.otf",
       weight: "400", 
       style: "normal",
     },
     {
-      path: "../fonts/mazzard/MazzardH-Medium.otf",
+      path: "../../public/fonts/MazzardH-Medium.otf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../fonts/mazzard/MazzardH-SemiBold.otf",
+      path: "../../public/fonts/MazzardH-SemiBold.otf",
       weight: "600",
       style: "normal",
     },
