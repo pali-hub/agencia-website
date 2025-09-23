@@ -43,7 +43,7 @@ export default function FeaturedProjects() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="rounded-3xl bg-white/30 border border-gray-200 backdrop-blur shadow-lg flex flex-col md:flex-row gap-6 items-center p-6 mx-auto max-w-3xl"
         >
-          <div className="relative w-full rounded-2xl overflow-hidden shadow-xl" style={{ maxHeight: 320, aspectRatio: '4/3' }}>
+          <div className="relative w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
             <Image
               src={project.cover}
               alt={project.client}
@@ -52,7 +52,7 @@ export default function FeaturedProjects() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
-          <div className="w-full mt-4 md:mt-0">
+          <div className="w-full md:w-1/2 mt-4 md:mt-0">
             <div className="text-gray-500 mb-2">• {project.client}</div>
             <h2 className="font-bold text-2xl mb-2 text-gray-800">{project.client}</h2>
             <p className="mb-3 text-gray-700">{project.description || ""}</p>
