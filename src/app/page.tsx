@@ -1,7 +1,9 @@
+"use client";
+
 import { motion, easeOut } from "framer-motion";
 import Marquee from "@/components/Marquee";
 import ServicesList from "@/components/ServicesList";
-import FeaturedProjects from "@/components/FeaturedProjects"; // Importação adicionada
+import FeaturedProjects from "@/components/FeaturedProjects";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
