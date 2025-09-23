@@ -6,6 +6,21 @@ on:
   pull_request:
     branches: [main, develop]
 
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  # ... (restante do workflow igual ao que você já tem)
+
+jobs:
+  # ... (restante do workflow igual ao que você já tem)
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
 jobs:
   quality-checks:
     name: Code Quality & Type Validation
