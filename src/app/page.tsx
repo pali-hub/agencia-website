@@ -3,6 +3,7 @@
 import { motion, easeOut } from "framer-motion";
 import Marquee from "@/components/Marquee";
 import ServicesList from "@/components/ServicesList";
+import FeaturedProjects from "@/components/FeaturedProjects"; // Adicione esta linha
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -44,6 +45,9 @@ export default function Home() {
           </motion.a>
         </motion.div>
       </section>
+
+      {/* Featured Projects - SEGUNDA SEÇÃO */}
+      <FeaturedProjects />
 
       {/* FAIXA MARQUEE */}
       <Marquee
