@@ -1,62 +1,75 @@
-import { useEffect, useState } from "react";
+import { motion, easeOut } from "framer-motion";
+import Marquee from "@/components/Marquee";
+import ServicesList from "@/components/ServicesList";
+import FeaturedProjects from "@/components/FeaturedProjects"; // Importação adicionada
 
-type FeaturedProject = {
-  client: string;
-  slug: string;
-  tags: string[];
-  backdrop: string;
-  backdropRing?: string;
-  cover: string;
-  description?: string;
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
 };
 
-const covers = [
-  { json: "/images/covers/img1.json", img: "/images/covers/img1.JPG" },
-  { json: "/images/covers/img2.json", img: "/images/covers/img2.JPG" },
-  // Adicione mais arquivos aqui conforme necessário!
-];
-
-export default function FeaturedProjects() {
-  const [projects, setProjects] = useState<FeaturedProject[]>([]);
-
-  useEffect(() => {
-    Promise.all(
-      covers.map(async ({ json, img }) => {
-        const data = await fetch(json).then((res) => res.json());
-        return { ...data, cover: img };
-      })
-    ).then(setProjects);
-  }, []);
-
+export default function Home() {
   return (
-    <section className="grid md:grid-cols-2 gap-10 py-12">
-      {projects.map((project) => (
-        <div
-          key={project.slug}
-          className={`rounded-3xl p-6 bg-gradient-to-br ${project.backdrop} ring-8 ${project.backdropRing} flex flex-col md:flex-row gap-6 items-center`}
+    <main>
+      {/* HERO */}
+      <section className="min-h-[70svh] md:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 pt-24 md:pt-28">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-10% 0% -10% 0%" }}
+          transition={{ staggerChildren: 0.08 }}
         >
-          <img
-            src={project.cover}
-            alt={project.client}
-            className="w-full md:w-2/3 rounded-2xl shadow-lg"
-          />
-          <div className="flex-1">
-            <div className="text-gray-500 mb-2">• {project.client}</div>
-            <h2 className="font-bold text-xl mb-2">{project.client}</h2>
-            <p className="mb-3">{project.description || ""}</p>
-            <div className="flex gap-2 flex-wrap">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 rounded-lg bg-gray-100 text-gray-700 text-xs font-medium"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      ))}
-    </section>
+          <motion.h1
+            variants={fadeUp}
+            className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-tight"
+          >
+            Experiências digitais claras e bonitas
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-4 sm:mt-6 max-w-[38rem] text-base sm:text-lg text-gray-600 mx-auto px-2"
+          >
+            Estratégia, design e desenvolvimento para marcas que querem
+            modernidade sem complicação.
+          </motion.p>
+
+          <motion.a
+            variants={fadeUp}
+            href="#contato"
+            className="mt-6 sm:mt-8 inline-block rounded-xl border border-gray-300 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-medium hover:bg-gray-100 transition"
+          >
+            Falar agora
+          </motion.a>
+        </motion.div>
+      </section>
+
+      {/* SEGUNDA SEÇÃO - Featured Projects */}
+      <FeaturedProjects />
+
+      {/* FAIXA MARQUEE */}
+      <Marquee
+        items={[
+          "Strategic experiences",
+          "Results driven solutions",
+          "Business value",
+          "Purposeful design",
+        ]}
+        direction="left"
+        speed={28}
+        className="border-y"
+      />
+
+      <div className="hidden sm:block">
+        <Marquee
+          items={["Branding", "Web design", "UI • UX", "Development"]}
+          direction="right"
+          speed={26}
+          className="border-b bg-white/60 backdrop-blur"
+        />
+      </div>
+
+      <ServicesList />
+    </main>
   );
 }
