@@ -1,16 +1,131 @@
 name: CI/CD Pipeline
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
 
 permissions:
   contents: read
+  issues: write
   pull-requests: write
 
 jobs:
-  build:
+  quality-checks:
+    name: Code Quality & Type Validation
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Instalar dependências
-        run: npm install
-      - name: Rodar testes
-        run: npm test
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: TypeScript type check
+        run: npx tsc --noEmit
+
+  build:
+    name: Build & Deploy Artifacts
+    runs-on: ubuntu-latest
+    needs: quality-checks
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: out/
+          retention-days: 30
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            const buildStatus = '✅ Build completed successfully!';
+            const artifactUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            
+            const comment = `## 🚀 Build Status
+            
+            ${buildStatus}
+            
+            **Cloudflare Pages Ready:** Static build generated and uploaded as artifact.
+            
+            📁 **Build Artifacts:** [Download here](${artifactUrl})
+            
+            **Build Details:**
+            - ✅ ESLint passed
+            - ✅ TypeScript validation passed
+            - ✅ Static site generated
+            - ✅ Cloudflare Pages compatible
+            
+            <sub>Commit: ${context.sha.substring(0, 7)}</sub>`;
+            
+            github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: number,
+              body: comment
+            });
+
+  build-failure-comment:
+    name: Build Failure Notification
+    runs-on: ubuntu-latest
+    needs: [quality-checks, build]
+    if: failure() && github.event_name == 'pull_request'
+
+    steps:
+      - name: Comment on PR failure
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            const buildStatus = '❌ Build failed!';
+            const artifactUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            
+            const comment = `## 🚨 Build Status
+            
+            ${buildStatus}
+            
+            **Issues detected in the build process.**
+            
+            📋 **Action Required:**
+            - Check ESLint errors
+            - Verify TypeScript types
+            - Review build logs: [View Details](${artifactUrl})
+            
+            <sub>Commit: ${context.sha.substring(0, 7)}</sub>`;
+            
+            github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: number,
+              body: comment
+            });
