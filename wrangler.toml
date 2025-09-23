@@ -1,0 +1,10 @@
+name = "agencia-website"
+pages_build_output_dir = "out"
+
+[env.production]
+compatibility_date = "2023-12-18"
+compatibility_flags = ["nodejs_compat"]
+
+[env.development]
+compatibility_date = "2023-12-18"
+compatibility_flags = ["nodejs_compat"]
