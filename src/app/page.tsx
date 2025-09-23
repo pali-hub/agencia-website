@@ -2,8 +2,8 @@
 
 import { motion, easeOut } from "framer-motion";
 import Marquee from "@/components/Marquee";
-import ServicesList from "@/components/ServicesList";
 import FeaturedProjects from "@/components/FeaturedProjects";
+import ServicesList from "@/components/ServicesList";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -13,7 +13,9 @@ const fadeUp = {
 export default function Home() {
   return (
     <main>
-      {/* HERO */}
+      {/* 1. Logo e menu: normalmente vem do layout global, não precisa mexer aqui */}
+
+      {/* 2. HERO - Título principal e subtítulo */}
       <section className="min-h-[70svh] md:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 pt-24 md:pt-28">
         <motion.div
           initial="hidden"
@@ -46,10 +48,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* SEGUNDA SEÇÃO - Featured Projects */}
-      <FeaturedProjects />
-
-      {/* FAIXA MARQUEE */}
+      {/* 3. Marquee */}
       <Marquee
         items={[
           "Strategic experiences",
@@ -61,7 +60,6 @@ export default function Home() {
         speed={28}
         className="border-y"
       />
-
       <div className="hidden sm:block">
         <Marquee
           items={["Branding", "Web design", "UI • UX", "Development"]}
@@ -71,6 +69,10 @@ export default function Home() {
         />
       </div>
 
+      {/* 4. FeaturedProjects */}
+      <FeaturedProjects />
+
+      {/* 5. ServicesList */}
       <ServicesList />
     </main>
   );
