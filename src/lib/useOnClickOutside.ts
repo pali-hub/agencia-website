@@ -7,6 +7,7 @@ export function useOnClickOutside<T extends HTMLElement>(
   useEffect(() => {
     function handler(e: MouseEvent) {
       if (!ref.current) return;
+      if (!e.target) return;
       if (!ref.current.contains(e.target as Node)) cb();
     }
     document.addEventListener("mousedown", handler);
