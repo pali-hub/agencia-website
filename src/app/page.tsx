@@ -49,24 +49,35 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* 3. Marquee */}
+      {/* 3. Marquee - Strategic Messages */}
       <Marquee
         items={[
-          "Strategic experiences",
-          "Results driven solutions",
-          "Business value",
-          "Purposeful design",
+          "Strategic digital experiences",
+          "Results that drive growth", 
+          "Business value creation",
+          "Purposeful design solutions",
+          "Modern brand experiences",
+          "Performance-driven development"
         ]}
         direction="left"
-        speed={28}
-        className="border-y"
+        speed={35}
+        className="border-y bg-gradient-to-r from-gray-50/30 to-white/30 backdrop-blur-sm"
+        fadeEdges={true}
       />
       <div className="hidden sm:block">
         <Marquee
-          items={["Branding", "Web design", "UI • UX", "Development"]}
+          items={[
+            "Brand Identity & Strategy", 
+            "Web Design & Development", 
+            "UX/UI & User Research", 
+            "Digital Marketing Solutions",
+            "E-commerce Platforms",
+            "Creative Consultation"
+          ]}
           direction="right"
-          speed={26}
+          speed={32}
           className="border-b bg-white/60 backdrop-blur"
+          fadeEdges={true}
         />
       </div>
 
