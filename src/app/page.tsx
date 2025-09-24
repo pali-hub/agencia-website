@@ -5,6 +5,7 @@ import Marquee from "@/components/Marquee";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import CreativeLabSection from "@/components/CreativeLabSection";
 import ServicesList from "@/components/ServicesList";
+import ContactForm from "@/components/ContactForm";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -78,6 +79,9 @@ export default function Home() {
 
       {/* 6. ServicesList */}
       <ServicesList />
+
+      {/* 7. Contact Form */}
+      <ContactForm />
     </main>
   );
 }
