@@ -29,16 +29,32 @@ body {
 /* ===== Marquee ===== */
 @keyframes marquee-left {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-33.333333%); }
 }
 @keyframes marquee-right {
-  0%   { transform: translateX(-50%); }
+  0%   { transform: translateX(-33.333333%); }
   100% { transform: translateX(0); }
+}
+
+/* Smooth marquee with hardware acceleration */
+.marquee-track {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translateZ(0);
+}
+
+/* Pause animation on hover for better UX */
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
 /* respeitar quem pede menos movimento */
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none !important; }
+  .marquee-track { 
+    animation: none !important; 
+    /* Show static text when animation is disabled */
+    transform: translateX(0) !important;
+  }
   
   /* Reduce motion for all animations and transitions */
   *, *::before, *::after {
