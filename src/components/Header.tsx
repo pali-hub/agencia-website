@@ -18,7 +18,7 @@ export default function Header() {
   }
 
   function handleMouseLeave() {
-    closeTimeout.current = setTimeout(() => setOpen(null), 120);
+    closeTimeout.current = setTimeout(() => setOpen(null), 150);
   }
 
   const closeMenus = useCallback(() => setOpen(null), []);

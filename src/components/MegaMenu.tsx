@@ -23,7 +23,7 @@ function renderMenuItems(items: (MenuSection | MenuItem)[]) {
   return items.map((item) =>
     "items" in item ? (
       <li key={item.title} className="mb-2">
-        <div className="font-semibold text-neutral-700 mb-1 hover:text-rose-700 hover:bg-rose-50 hover:ring-1 hover:ring-rose-200 rounded-lg transition cursor-pointer px-2 py-1">
+        <div className="font-semibold text-neutral-700 mb-1 hover:text-rose-700 hover:bg-rose-50 hover:ring-1 hover:ring-rose-200 rounded-lg transition cursor-pointer px-2 py-1 text-sm">
           {item.title}
         </div>
         <ul className="space-y-1.5 ml-2">{renderMenuItems(item.items)}</ul>
@@ -32,17 +32,17 @@ function renderMenuItems(items: (MenuSection | MenuItem)[]) {
       <motion.li key={item.title} variants={itemVariants}>
         <Link
           href={item.href}
-          className={`hover-lift flex items-start gap-3 rounded-xl p-3 transition hover:bg-white ${
+          className={`hover-lift flex items-start gap-2 sm:gap-3 rounded-xl p-2 sm:p-3 transition hover:bg-white ${
             item.highlight ? "hover:bg-rose-50 hover:ring-1 hover:ring-rose-200" : ""
           }`}
         >
-          <div className="h-8 w-8 shrink-0 rounded-lg bg-neutral-100" />
+          <div className="h-6 w-6 sm:h-8 sm:w-8 shrink-0 rounded-lg bg-neutral-100" />
           <div>
-            <div className={`font-medium leading-tight ${item.highlight ? "hover:text-rose-700" : ""}`}>
+            <div className={`font-medium leading-tight text-sm sm:text-base ${item.highlight ? "hover:text-rose-700" : ""}`}>
               {item.title}
             </div>
             {item.desc && (
-              <div className="text-sm text-neutral-500">{item.desc}</div>
+              <div className="text-xs sm:text-sm text-neutral-500">{item.desc}</div>
             )}
           </div>
         </Link>
@@ -80,14 +80,14 @@ export default function MegaMenu({
       animate="show"
       exit="exit"
       variants={panelVariants}
-      className="fixed left-1/2 top-16 z-50 w-[min(1100px,92vw)] -translate-x-1/2 rounded-2xl border panel-glass shadow-2xl edge-fade-xy [--fade-x:16px] md:[--fade-x:28px] [--fade-y:16px]"
+      className="fixed left-1/2 top-16 z-50 w-[min(1100px,95vw)] -translate-x-1/2 rounded-2xl border panel-glass shadow-2xl edge-fade-xy [--fade-x:12px] sm:[--fade-x:16px] md:[--fade-x:20px] lg:[--fade-x:28px] [--fade-y:12px] sm:[--fade-y:16px]"
       ref={ref}
     >
-      <div className="grid gap-6 p-6 md:grid-cols-3">
+      <div className="grid gap-4 p-4 sm:gap-5 sm:p-5 md:gap-6 md:p-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sections.map((col, i) => (
           <div key={i} className="space-y-2">
             {col.title && (
-              <div className="mb-2 text-sm font-medium text-neutral-500">{col.title}</div>
+              <div className="mb-2 text-xs sm:text-sm font-medium text-neutral-500">{col.title}</div>
             )}
             <ul className="space-y-1.5">
               {renderMenuItems(col.items)}
