@@ -33,42 +33,53 @@ export default function FeaturedProjects() {
   }, []);
 
   return (
-    <section className="flex flex-col gap-10 py-12 px-2 sm:px-0">
-      {projects.map((project) => (
+    <section className="px-4 py-16 md:py-24">
+      <div className="mx-auto max-w-6xl">
         <motion.div
-          key={project.slug}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="rounded-3xl bg-white/30 border border-gray-200 backdrop-blur shadow-lg flex flex-col md:flex-row gap-6 items-center p-6 mx-auto max-w-3xl"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-10% 0% -10% 0%" }}
+          transition={{ staggerChildren: 0.08 }}
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          <div className="relative w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-            <Image
-              src={project.cover}
-              alt={project.client}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-          <div className="w-full md:w-1/2 mt-4 md:mt-0">
-            <div className="text-gray-500 mb-2">• {project.client}</div>
-            <h2 className="font-bold text-2xl mb-2 text-gray-800">{project.client}</h2>
-            <p className="mb-3 text-gray-700">{project.description || ""}</p>
-            <div className="flex gap-2 flex-wrap">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 rounded-lg bg-gray-100 text-gray-700 text-xs font-medium"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.slug}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="rounded-2xl border bg-white/70 backdrop-blur overflow-hidden hover:bg-white transition-all group shadow-lg"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={project.cover}
+                  alt={project.client}
+                  fill
+                  className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  priority={index === 0}
+                />
+              </div>
+              <div className="p-6">
+                <div className="text-gray-500 mb-2 text-sm">• {project.client}</div>
+                <h2 className="font-bold text-xl mb-3 text-gray-800">{project.client}</h2>
+                <p className="mb-4 text-gray-700 text-sm leading-relaxed">{project.description || ""}</p>
+                <div className="flex gap-2 flex-wrap">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 rounded-lg bg-gray-100 text-gray-700 text-xs font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
-      ))}
+      </div>
     </section>
   );
 }
