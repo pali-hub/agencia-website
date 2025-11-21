@@ -29,19 +29,22 @@ const cards = [
     title: "Experimentação",
     description: "Testamos novas abordagens criativas e tecnológicas para encontrar soluções únicas.",
     image: "/images/projects/img1.png",
-    alt: "Projeto de experimentação criativa"
+    alt: "Projeto de experimentação criativa",
+    badge: "Lab"
   },
   {
     title: "Inovação", 
     description: "Desenvolvemos conceitos originais que destacam sua marca no mercado.",
     image: "/images/projects/img2.png",
-    alt: "Projeto de inovação em design"
+    alt: "Projeto de inovação em design",
+    badge: "Creative"
   },
   {
     title: "Prototipagem",
     description: "Criamos protótipos rápidos para validar ideias antes da implementação final.",
     image: "/images/projects/img3.png",
-    alt: "Projeto de prototipagem rápida"
+    alt: "Projeto de prototipagem rápida",
+    badge: "Rapid"
   }
 ];
 
@@ -78,13 +81,13 @@ export default function CreativeLabSection() {
 
           <motion.div
             variants={fadeVariant}
-            className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {cards.map((card, index) => (
               <motion.div
                 key={card.title}
                 variants={cardVariant}
-                className="rounded-2xl border bg-white/70 backdrop-blur overflow-hidden hover:bg-white transition-all group focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2"
+                className="group rounded-2xl border bg-white/70 backdrop-blur overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-300 cursor-pointer focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2"
                 tabIndex={0}
                 role="article"
                 aria-labelledby={`card-title-${index}`}
@@ -103,17 +106,27 @@ export default function CreativeLabSection() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     priority={index === 0} // Prioritize loading the first image
                   />
+                  <div className="absolute top-3 right-3">
+                    <span className="rounded-full bg-white/90 backdrop-blur px-3 py-1 text-xs font-medium text-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {card.badge}
+                    </span>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 
-                    id={`card-title-${index}`}
-                    className="text-lg font-medium mb-2"
-                  >
-                    {card.title}
-                  </h3>
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <h3 
+                      id={`card-title-${index}`}
+                      className="text-lg font-medium leading-tight"
+                    >
+                      {card.title}
+                    </h3>
+                    <span className="rounded-full border px-2 py-0.5 text-xs opacity-70 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0">
+                      Explorar
+                    </span>
+                  </div>
                   <p 
                     id={`card-description-${index}`}
-                    className="text-sm text-gray-600"
+                    className="text-sm text-gray-600 leading-relaxed"
                   >
                     {card.description}
                   </p>
