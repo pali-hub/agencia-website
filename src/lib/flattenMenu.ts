@@ -6,3 +6,10 @@ export function flattenFirstSection(sections: MenuSection[]): MenuItem[] {
     (item): item is MenuItem => !("items" in item)
   );
 }
+
+export function flattenAllSections(sections: MenuSection[]): { title: string; items: MenuItem[] }[] {
+  return sections.map(section => ({
+    title: section.title || "",
+    items: section.items.filter((item): item is MenuItem => !("items" in item))
+  }));
+}
